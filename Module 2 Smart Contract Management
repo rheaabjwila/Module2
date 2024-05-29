@@ -1,0 +1,130 @@
+import React, { useState } from 'react';
+
+const LetsBaked = () => {
+  const [message, setMessage] = useState("Make some cookies!");
+  const [flour, setFlour] = useState(0);
+  const [eggs, setEggs] = useState(0);
+  const [chocoChips, setChocoChips] = useState(0);
+
+  const handleFlourChange = (grams) => {
+    if (grams !== 5) {
+      alert("Put exactly 5 grams of flour!");
+      return;
+    }
+    setFlour(grams);
+  };
+
+  const handleEggsChange = (pieces) => {
+    if (pieces !== 2) {
+      alert("The texture will be bad!");
+      return;
+    }
+    setEggs(pieces);
+  };
+
+  const handleChocoChipsChange = (cup) => {
+    if (cup !== 1) {
+      alert("You need exactly 1 cup of chocolate chips!");
+      return;
+    }
+    setChocoChips(cup);
+  };
+
+  const checkCookies = () => {
+    if (flour === 0) {
+      alert("Add some Flour!");
+    } else if (eggs === 0) {
+      alert("Add some Eggs!");
+    } else if (chocoChips === 0) {
+      alert("Add some Chips!");
+    } else {
+      setMessage("Here's your cookies!");
+    }
+  };
+
+  return (
+    <div className='Container'>
+      <h1 className='Title'>{message}</h1>
+      <div>
+        <label>
+          Flour (grams):
+          <input
+            type="number"
+            onChange={(e) => handleFlourChange(parseInt(e.target.value))}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Eggs (pieces):
+          <input
+            type="number"
+            onChange={(e) => handleEggsChange(parseInt(e.target.value))}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Chocolate Chips (cup):
+          <input
+            type="number"
+            onChange={(e) => handleChocoChipsChange(parseInt(e.target.value))}
+          />
+        </label>
+      </div>
+
+      <button onClick={checkCookies}>Check Cookies</button>
+
+      <style jsx>{`
+
+        .Container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: auto;
+        }
+      
+        .Title{ 
+        font-size: 24px;
+        color: #343a40;
+        margin-bottom: 20px;
+      }
+      
+        .Label{
+        font-size: 16px;
+        color: #495057;
+        margin-bottom: 10px;
+        display: block;
+      }
+      
+        .Input{
+        padding: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 100%;
+      }
+      
+        .Button{
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        &:hover {
+          background-color: #0056b3;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default LetsBaked;
